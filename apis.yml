@@ -1,18 +1,69 @@
 aid: fetch-rewards
 name: Fetch Rewards
-description: 'Fetch Rewards is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Fetch (legally Fetch Rewards, LLC) is a Madison, Wisconsin consumer rewards
+  platform whose mobile app lets shoppers scan paper receipts, connect e-receipts and
+  link accounts to earn points redeemable for gift cards and other rewards. On the
+  demand side, Fetch For Business sells consumer packaged goods brands, retailers and
+  restaurants receipt-verified offers, video and display advertising, point boosts,
+  loyalty programs and omnichannel audience activation, all measured against real purchase
+  data and managed through its Mission Control campaign platform. Fetch publishes no
+  public developer or partner API and operates no developer portal; its only public
+  machine-readable contract is the Receipt Processor reference OpenAPI it publishes
+  on GitHub as an engineering hiring exercise. It does run a coordinated vulnerability
+  disclosure program via HackerOne and publishes an RFC 9116 security.txt, and its
+  GitHub organization ships several first-party open-source Swift and Python developer
+  libraries.'
 url: https://raw.githubusercontent.com/api-evangelist/fetch-rewards/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment-pass
+image: https://fetch.com/favicon.png
 specificationVersion: '0.20'
 created: '2026-08-01'
 modified: '2026-08-01'
 tags:
 - Company
-apis: []
+- Rewards
+- Loyalty
+- Consumer
+- Retail
+- Advertising
+- Receipts
+- Consumer Packaged Goods
+- Mobile
+- Marketing
+apis:
+- aid: fetch-rewards:receipt-processor
+  name: Fetch Receipt Processor (Reference Specification)
+  description: 'A two-operation OpenAPI 3.0.3 document Fetch publishes in its public
+    GitHub organization as the specification for its engineering take-home exercise:
+    submit a receipt for processing and retrieve the points awarded for that receipt.
+    It is a reference contract, not a hosted production service - the document declares
+    no servers, no security schemes and no operationIds, and Fetch exposes no public
+    endpoint implementing it. It is captured here because it is the only machine-readable
+    contract Fetch publishes, and it faithfully describes the shape of the receipt and
+    line-item data at the core of the Fetch product.'
+  humanURL: https://github.com/fetch-rewards/receipt-processor-challenge
+  tags:
+  - Receipts
+  - Rewards
+  - Points
+  properties:
+  - type: OpenAPI
+    url: openapi/fetch-rewards-receipt-processor-openapi.yml
+  - type: ErrorCatalog
+    url: errors/fetch-rewards-problem-types.yml
+  - type: DataModel
+    url: data-model/fetch-rewards-data-model.yml
+  - type: Overlay
+    url: overlays/fetch-rewards-receipt-processor-overlay.yaml
+  - type: Conventions
+    url: conventions/fetch-rewards-conventions.yml
+  - type: SourceCode
+    url: https://github.com/fetch-rewards/receipt-processor-challenge
+  x-status: reference-specification
+  x-production: false
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +71,51 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://forgeglobal.com/fetch-rewards_stock/
+  url: https://fetch.com/
+- type: Solutions
+  url: https://business.fetch.com/solutions
+- type: Blog
+  url: https://fetch.com/blog
+- type: Support
+  url: https://help.fetch.com/hc/en-us
+- type: FAQ
+  url: https://fetch.com/faq
+- type: ContactUs
+  url: https://business.fetch.com/contact-us
+- type: Newsroom
+  url: https://business.fetch.com/newsroom
+- type: Careers
+  url: https://fetch.com/careers/jobs
+- type: Extensions
+  url: https://chromewebstore.google.com/detail/fetch/hgpkkikfhmllgfnclpfiklpcpehelhda
+- type: GitHubOrganization
+  url: https://github.com/fetch-rewards
+- type: PrivacyPolicy
+  url: https://fetch.com/privacy-policy
+- type: TermsOfService
+  url: https://fetch.com/terms-of-service
+- type: LinkedIn
+  url: https://www.linkedin.com/company/fetch-rewards-llc/
+- type: Twitter
+  url: https://x.com/FetchRewards
+- type: Security
+  url: https://hackerone.com/fetchrewards_vdp
+- type: VulnerabilityDisclosure
+  url: security/fetch-rewards-vulnerability-disclosure.yml
+- type: SecurityTxt
+  url: well-known/fetch-rewards-security.txt
+- type: WellKnown
+  url: well-known/fetch-rewards-well-known.yml
+- type: DomainSecurity
+  url: security/fetch-rewards-domain-security.yml
+- type: Packages
+  url: packages/fetch-rewards-packages.yml
+- type: Conformance
+  url: conformance/fetch-rewards-conformance.yml
+- type: LLMsTxt
+  url: llms/fetch-rewards-llms.txt
+x-enrichment:
+  date: '2026-08-01'
+  status: enriched
+  artifacts_added: 12
+  pass: local-v1

@@ -1,0 +1,66 @@
+generated: '2026-08-01'
+method: derived
+source: openapi/fetch-rewards-receipt-processor-openapi.yml
+scope: 'Covers the one machine-readable contract Fetch publishes - the Receipt Processor
+  reference specification. Fetch runs no public developer portal and publishes no
+  cross-cutting API guidance, so every convention below is read out of the specification
+  itself rather than from documentation.'
+authentication:
+  style: none
+  evidence: No components.securitySchemes and no security requirement at either the
+    document or operation level.
+  documented: false
+idempotency:
+  supported: false
+  header: null
+  evidence: POST /receipts/process declares no Idempotency-Key parameter and no
+    replay semantics. Resubmitting the same receipt body is specified to mint a new
+    id, so the write path is not safely retryable.
+pagination:
+  applicable: false
+  evidence: Neither operation returns a collection.
+field_expansion:
+  supported: false
+metadata:
+  supported: false
+request_tracing:
+  request_id_header: null
+  supported: false
+versioning:
+  scheme: document-only
+  current: 1.0.0
+  in_path: false
+  in_header: false
+  evidence: info.version is 1.0.0. No version segment appears in either path and no
+    version header is defined, so a client cannot pin a version over the wire.
+  policy_published: false
+error_envelope:
+  format: none
+  media_type: null
+  evidence: components.responses.BadRequest and components.responses.NotFound carry
+    a description only.
+  cross_reference: errors/fetch-rewards-problem-types.yml
+rate_limiting:
+  signalled: false
+  headers: []
+  evidence: No rate-limit headers, parameters or 429 response are declared, and no
+    rate-limit policy is published.
+content_negotiation:
+  request_media_types:
+  - application/json
+  response_media_types:
+  - application/json
+data_conventions:
+  identifiers: opaque strings matching ^\S+$; the published example is a UUID
+  money: decimal string matching ^\d+\.\d{2}$, no currency member
+  dates: ISO 8601 date (format date)
+  times: 24-hour ISO 8601 time (format time)
+  naming: lowerCamelCase members (purchaseDate, shortDescription)
+  path_style: plural resource collections with a nested sub-resource (/receipts/{id}/points)
+cross_references:
+  errors: errors/fetch-rewards-problem-types.yml
+  data_model: data-model/fetch-rewards-data-model.yml
+  conformance: conformance/fetch-rewards-conformance.yml
+  security: security/fetch-rewards-domain-security.yml
+x-note: 'No Idempotency pointer is wired in apis.yml because Fetch supports no
+  idempotency contract. Recording the absence is the finding.'

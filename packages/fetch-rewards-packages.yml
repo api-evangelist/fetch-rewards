@@ -1,0 +1,80 @@
+generated: '2026-08-01'
+method: searched
+source: https://github.com/fetch-rewards
+summary:
+  api_client_sdks: 0
+  open_source_libraries: 4
+  note: 'Fetch publishes no public API, and therefore ships no API client SDKs in any
+    package registry. Searches of npm, PyPI, Maven Central, NuGet, pkg.go.dev, RubyGems,
+    Packagist and crates.io returned no first-party Fetch package. What the fetch-rewards
+    GitHub organization does publish is a small set of first-party open-source developer
+    libraries - Swift macro packages consumed via Swift Package Manager, and a Kubernetes
+    operator - distributed from the repository rather than from a package registry.'
+packages:
+- language: swift
+  registry: swift-package-manager
+  name: swift-mocking
+  products:
+  - Mocking
+  - MockingClient
+  url: https://github.com/fetch-rewards/swift-mocking
+  install: '.package(url: "https://github.com/fetch-rewards/swift-mocking", from: "1.0.0")'
+  license: MIT
+  official: true
+  kind: open-source-library
+  description: Swift macros for generating mocks.
+- language: swift
+  registry: swift-package-manager
+  name: swift-locking
+  products:
+  - Locking
+  - LockingClient
+  url: https://github.com/fetch-rewards/swift-locking
+  install: '.package(url: "https://github.com/fetch-rewards/swift-locking", from: "1.0.0")'
+  license: MIT
+  official: true
+  kind: open-source-library
+  description: Swift macros for protecting shared mutable state.
+- language: swift
+  registry: swift-package-manager
+  name: SwiftSyntaxSugar
+  products:
+  - SwiftSyntaxSugar
+  url: https://github.com/fetch-rewards/SwiftSyntaxSugar
+  install: '.package(url: "https://github.com/fetch-rewards/SwiftSyntaxSugar", from: "1.0.0")'
+  license: MIT
+  official: true
+  kind: open-source-library
+  description: Helpful extensions for SwiftSyntax.
+- language: python
+  registry: none
+  name: streamlit-operator
+  url: https://github.com/fetch-rewards/streamlit-operator
+  install: git clone https://github.com/fetch-rewards/streamlit-operator
+  license: MIT
+  official: true
+  kind: open-source-library
+  description: A friendly Kubernetes operator for deploying Streamlit Apps. Not published
+    to PyPI - PyPI returned 404 for streamlit-operator.
+registries_searched:
+- registry: npm
+  result: no first-party Fetch package
+- registry: pypi
+  result: 404 for streamlit-operator; no first-party Fetch package
+- registry: maven-central
+  result: none
+- registry: nuget
+  result: none
+- registry: pkg.go.dev
+  result: none
+- registry: rubygems
+  result: none
+- registry: packagist
+  result: none
+- registry: crates.io
+  result: none
+x-evidence:
+  fetched: '2026-08-01'
+  github_org: https://api.github.com/orgs/fetch-rewards/repos
+  note: Every package above was confirmed fork=false and license MIT via the GitHub API;
+    Package.swift manifests were read to record the library products.

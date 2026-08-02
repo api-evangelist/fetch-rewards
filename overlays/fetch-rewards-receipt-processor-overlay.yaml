@@ -1,0 +1,48 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Fetch Receipt Processor specification
+  version: 1.0.0
+extends: openapi/fetch-rewards-receipt-processor-openapi.yml
+x-generated: '2026-08-01'
+x-method: generated
+x-source: openapi/fetch-rewards-receipt-processor-openapi.yml
+x-note: 'Records the enhancements API Evangelist would apply. The harvested specification
+  is never mutated. Every action below adds provenance, operationIds and tags that the
+  original omits; no behaviour, path, schema or response is changed.'
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provenance: harvested verbatim from https://github.com/fetch-rewards/receipt-processor-challenge
+    x-apievangelist-status: reference-specification
+    x-apievangelist-production: false
+    contact:
+      name: Fetch Security
+      email: security@fetch.com
+      url: https://fetch.com/
+- target: $
+  update:
+    tags:
+    - name: Receipts
+      description: Submit receipts and read the points they earned.
+- target: $.paths['/receipts/process'].post
+  update:
+    operationId: processReceipt
+    tags:
+    - Receipts
+- target: $.paths['/receipts/{id}/points'].get
+  update:
+    operationId: getReceiptPoints
+    tags:
+    - Receipts
+- target: $.components.responses.BadRequest
+  update:
+    x-apievangelist-note: No media type or schema is declared, so this response is not
+      machine-interpretable. RFC 9457 application/problem+json would make it so.
+- target: $.components.responses.NotFound
+  update:
+    x-apievangelist-note: No media type or schema is declared, so this response is not
+      machine-interpretable. RFC 9457 application/problem+json would make it so.
+- target: $.components.schemas.Receipt
+  update:
+    x-apievangelist-note: Money is a pattern-constrained decimal string with no currency
+      member; the entity declares no identifier even though the POST returns one.

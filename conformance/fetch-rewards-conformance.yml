@@ -1,0 +1,62 @@
+generated: '2026-08-01'
+method: derived
+source: openapi/fetch-rewards-receipt-processor-openapi.yml, https://fetch.com/.well-known/security.txt,
+  https://hackerone.com/fetchrewards_vdp
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: openapi/fetch-rewards-receipt-processor-openapi.yml declares openapi 3.0.3
+    with paths and components; parses cleanly.
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: https://fetch.com/.well-known/security.txt returns 200 with Contact, Expires
+    (2029-11-14, in the future), Encryption, Preferred-Languages, Policy and Hiring
+    fields.
+- id: iso-8601-dates
+  conforms: true
+  evidence: Receipt.purchaseDate uses format date and Receipt.purchaseTime uses format
+    time.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Both declared error responses carry a description only - no media type,
+    no application/problem+json, no schema.
+- id: oauth2
+  conforms: false
+  evidence: The specification declares no components.securitySchemes and no security
+    requirement; no OAuth surface exists on any Fetch host.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returned 404 on fetch.com.
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: false
+  evidence: /.well-known/oauth-authorization-server returned 404 on fetch.com.
+- id: rfc9727-api-catalog
+  conforms: false
+  evidence: /.well-known/api-catalog returned 404 on fetch.com.
+- id: a2a-agent-card
+  conforms: false
+  evidence: /.well-known/agent-card.json and the legacy /.well-known/agent.json both
+    returned 404 on fetch.com, business.fetch.com and campaigns.fetch.com.
+- id: idempotency-key
+  conforms: false
+  evidence: POST /receipts/process declares no Idempotency-Key parameter and no idempotency
+    semantics; no idempotency contract is documented anywhere on the Fetch surface.
+- id: pagination
+  conforms: false
+  evidence: Neither operation returns a collection, so no pagination contract exists.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No deprecation or sunset policy is published; no operation is marked deprecated.
+- id: asyncapi
+  conforms: false
+  evidence: No event, streaming or webhook surface is published by Fetch. Not applicable
+    rather than deficient.
+compliance_program:
+  published: false
+  note: 'No trust center, compliance page or named certification (SOC 2, ISO 27001,
+    PCI DSS, HIPAA, FedRAMP) was found. trust.fetch.com and security.fetch.com do not
+    resolve; fetch.com/security returns 404. The probe of trust and compliance pages
+    returned no hit, so no Compliance pointer is emitted. Fetch does publish a Washington
+    My Health My Data consumer-health-data privacy notice at
+    https://fetch.com/privacy-policy-wa-consumer-health-data, which is a regulatory
+    disclosure rather than a certification.'

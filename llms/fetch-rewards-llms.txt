@@ -1,0 +1,64 @@
+# Fetch Rewards
+
+> Fetch (legally Fetch Rewards, LLC) is a Madison, Wisconsin consumer rewards platform. Its mobile app lets shoppers scan paper receipts, connect e-receipts and link accounts to earn points redeemable for gift cards. Fetch For Business sells consumer packaged goods brands, retailers and restaurants receipt-verified offers, video and display advertising, point boosts, loyalty programs and omnichannel audience activation, measured against real purchase data and managed in its Mission Control campaign platform.
+
+## Status of the API surface
+
+Fetch publishes **no public developer or partner API**. There is no developer portal, no API reference, no SDK for any Fetch service, no hosted MCP server, no A2A agent card, no webhook or event surface, and no OAuth or OpenID Connect surface. Brand and retailer integration is handled commercially through Fetch For Business rather than through a self-serve API. Probes on 2026-08-01 of `api.fetch.com`, `developer.fetch.com` and `docs.fetch.com` did not resolve; `/openapi.json`, `/swagger.json`, `/llms.txt`, `/.well-known/openid-configuration`, `/.well-known/oauth-authorization-server`, `/.well-known/api-catalog`, `/.well-known/ai-plugin.json`, `/.well-known/agent-card.json` and `/.well-known/agent.json` all returned 404 on `fetch.com`, `business.fetch.com` and `campaigns.fetch.com`.
+
+## Specs
+
+- [Receipt Processor reference OpenAPI 3.0.3](https://github.com/fetch-rewards/receipt-processor-challenge/blob/main/api.yml): The only machine-readable contract Fetch publishes. Two operations - `POST /receipts/process` submits a receipt and returns an id, `GET /receipts/{id}/points` returns the points awarded. Published as the specification for Fetch's engineering take-home exercise; it declares no servers, no security schemes and no operationIds, and no Fetch host implements it. It is a faithful description of the receipt and line-item data at the core of the product, not a callable service.
+
+## Consumer product
+
+- [Fetch](https://fetch.com/): The rewards app - scan receipts, earn points, redeem for gift cards.
+- [Rewards](https://fetch.com/rewards): The reward catalog.
+- [Fetch Play](https://fetch.com/fetch-play): Points for playing mobile games.
+- [Fetch browser extension](https://chromewebstore.google.com/detail/fetch/hgpkkikfhmllgfnclpfiklpcpehelhda): Earns points on online shopping.
+- [FAQ](https://fetch.com/faq)
+- [Help Center](https://help.fetch.com/hc/en-us)
+- [Blog](https://fetch.com/blog)
+
+## Business
+
+- [Fetch For Business](https://business.fetch.com/): The brand, retail and restaurant side of the platform.
+- [Capabilities](https://business.fetch.com/capabilities): Discovery, Sales, Loyalty, Omnichannel Activation and the Mission Control campaign platform.
+- [Solutions](https://business.fetch.com/solutions)
+- [Trends and insights](https://business.fetch.com/trends-and-insights)
+- [Newsroom](https://business.fetch.com/newsroom)
+- [Contact](https://business.fetch.com/contact-us)
+- [Fetch Ad Manager](https://campaigns.fetch.com/): Self-serve campaign buying for restaurants.
+
+## Security
+
+- [security.txt](https://fetch.com/.well-known/security.txt): RFC 9116, complete, expires 2029-11-14.
+- [Vulnerability disclosure program](https://hackerone.com/fetchrewards_vdp): Coordinated disclosure run on HackerOne.
+- Security contact: security@fetch.com
+- [PGP key](https://infosec-static.fetch.com/fetch-security-team-pgp.txt)
+
+## Open source
+
+- [fetch-rewards on GitHub](https://github.com/fetch-rewards): The engineering organization.
+- [swift-mocking](https://github.com/fetch-rewards/swift-mocking): Swift macros for generating mocks (MIT).
+- [swift-locking](https://github.com/fetch-rewards/swift-locking): Swift macros for protecting shared mutable state (MIT).
+- [SwiftSyntaxSugar](https://github.com/fetch-rewards/SwiftSyntaxSugar): Helpful extensions for SwiftSyntax (MIT).
+- [streamlit-operator](https://github.com/fetch-rewards/streamlit-operator): A Kubernetes operator for deploying Streamlit apps (MIT).
+
+## Legal
+
+- [Privacy policy](https://fetch.com/privacy-policy)
+- [Washington consumer health data notice](https://fetch.com/privacy-policy-wa-consumer-health-data)
+- [Terms of service](https://fetch.com/terms-of-service)
+
+## API Evangelist artifacts
+
+- [apis.yml](https://raw.githubusercontent.com/api-evangelist/fetch-rewards/refs/heads/main/apis.yml)
+- [Error catalog](https://raw.githubusercontent.com/api-evangelist/fetch-rewards/refs/heads/main/errors/fetch-rewards-problem-types.yml)
+- [Data model](https://raw.githubusercontent.com/api-evangelist/fetch-rewards/refs/heads/main/data-model/fetch-rewards-data-model.yml)
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/fetch-rewards/refs/heads/main/conventions/fetch-rewards-conventions.yml)
+- [Conformance](https://raw.githubusercontent.com/api-evangelist/fetch-rewards/refs/heads/main/conformance/fetch-rewards-conformance.yml)
+- [Packages](https://raw.githubusercontent.com/api-evangelist/fetch-rewards/refs/heads/main/packages/fetch-rewards-packages.yml)
+- [Well-known index](https://raw.githubusercontent.com/api-evangelist/fetch-rewards/refs/heads/main/well-known/fetch-rewards-well-known.yml)
+- [Domain security](https://raw.githubusercontent.com/api-evangelist/fetch-rewards/refs/heads/main/security/fetch-rewards-domain-security.yml)
+- [Vulnerability disclosure](https://raw.githubusercontent.com/api-evangelist/fetch-rewards/refs/heads/main/security/fetch-rewards-vulnerability-disclosure.yml)

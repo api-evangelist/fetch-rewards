@@ -1,0 +1,88 @@
+generated: '2026-08-01'
+method: derived
+source: openapi/fetch-rewards-receipt-processor-openapi.yml
+summary:
+  entities: 2
+  relationships: 1
+  identifier_style: opaque string matching ^\S+$; the published example is a UUID
+  money_representation: decimal string matching ^\d+\.\d{2}$ (not a minor-unit integer,
+    not a number)
+entities:
+- name: Receipt
+  schema: '#/components/schemas/Receipt'
+  description: A single shopper receipt submitted for point calculation - the core
+    unit of the Fetch consumer product.
+  required:
+  - retailer
+  - purchaseDate
+  - purchaseTime
+  - items
+  - total
+  fields:
+  - name: retailer
+    type: string
+    pattern: ^[\w\s\-&]+$
+    description: The name of the retailer or store the receipt is from.
+    example: M&M Corner Market
+  - name: purchaseDate
+    type: string
+    format: date
+    description: The date of the purchase printed on the receipt.
+    example: '2022-01-01'
+  - name: purchaseTime
+    type: string
+    format: time
+    description: The time of the purchase printed on the receipt, 24-hour.
+    example: '13:01'
+  - name: items
+    type: array
+    items_ref: '#/components/schemas/Item'
+    min_items: 1
+    description: The line items printed on the receipt.
+  - name: total
+    type: string
+    pattern: ^\d+\.\d{2}$
+    description: The total amount paid on the receipt.
+    example: '6.49'
+- name: Item
+  schema: '#/components/schemas/Item'
+  description: One line item on a receipt - the product-level grain Fetch matches brand
+    offers against.
+  required:
+  - shortDescription
+  - price
+  fields:
+  - name: shortDescription
+    type: string
+    pattern: ^[\w\s\-]+$
+    description: The short product description for the item.
+    example: Mountain Dew 12PK
+  - name: price
+    type: string
+    pattern: ^\d+\.\d{2}$
+    description: The total price paid for this item.
+    example: '6.49'
+relationships:
+- from: Receipt
+  to: Item
+  kind: has_many
+  via: items
+  required: true
+  min_cardinality: 1
+  evidence: Receipt.items is an array with minItems 1 whose members $ref Item.
+inline_result_shapes:
+- operation: POST /receipts/process
+  shape: object with a single required id (string, ^\S+$) - the receipt handle
+  note: Defined inline rather than as a named component, so it is not reusable and
+    has no schema name.
+- operation: GET /receipts/{id}/points
+  shape: object with points (integer, int64)
+  note: points is not marked required, so a conforming server may omit it.
+gaps:
+- No entity models the shopper, the brand, the offer, the point ledger or the redemption
+  - the four domains that make up the actual Fetch platform. This graph covers the
+  receipt-ingestion slice only.
+- The receipt id returned by the POST is never modelled as a property of Receipt, so
+  the entity has no declared identifier.
+- Money is carried as a pattern-constrained string, which avoids float error but pushes
+  currency and rounding semantics entirely onto the client; no currency field exists.

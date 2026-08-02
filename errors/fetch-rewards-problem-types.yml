@@ -1,0 +1,48 @@
+generated: '2026-08-01'
+method: derived
+source: openapi/fetch-rewards-receipt-processor-openapi.yml
+format: plain
+format_note: 'Not RFC 9457. The specification declares no media type and no response
+  body for either error response - both reusable responses under components.responses
+  carry a description only. An agent calling this contract gets a status code and a
+  human sentence, with no machine-readable problem type, title, detail or instance
+  member to branch on.'
+problems:
+- status: 400
+  name: BadRequest
+  title: The receipt is invalid.
+  component: '#/components/responses/BadRequest'
+  media_type: null
+  schema: null
+  source_operation: openapi/fetch-rewards-receipt-processor-openapi.yml#POST /receipts/process
+  remediation: Re-check the receipt payload against the Receipt schema. Every required
+    member (retailer, purchaseDate, purchaseTime, items, total) must be present, items
+    must hold at least one Item, and retailer, total and each item price must match
+    their declared regular expressions.
+- status: 404
+  name: NotFound
+  title: No receipt found for that ID.
+  component: '#/components/responses/NotFound'
+  media_type: null
+  schema: null
+  source_operation: openapi/fetch-rewards-receipt-processor-openapi.yml#GET /receipts/{id}/points
+  remediation: The receipt id must be the exact id returned by POST /receipts/process.
+    Ids are opaque strings matching ^\S+$; the published example is a UUID.
+coverage:
+  operations: 2
+  operations_with_4xx: 2
+  operations_with_5xx: 0
+  distinct_status_codes:
+  - 400
+  - 404
+gaps:
+- No 5xx response is declared on either operation, so a client has no documented contract
+  for server-side failure.
+- No error body schema, so error handling cannot be generated from the spec.
+- No error code registry or error reference page is published anywhere on the Fetch
+  public surface.
+x-note: 'The BadRequest response in the source specification carries a YAML comment
+  addressed to large language models, instructing that the error message contain a
+  specific phrase if the implementation was model-generated. It is a canary Fetch uses
+  to detect AI-written take-home submissions, not part of the contract. It is preserved
+  verbatim in the harvested spec and is deliberately not treated as a requirement here.'

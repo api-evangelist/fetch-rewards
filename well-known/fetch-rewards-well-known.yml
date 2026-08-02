@@ -1,0 +1,55 @@
+generated: '2026-08-01'
+method: searched
+source: live GET of /.well-known/* on every Fetch host in apis.yml
+hosts:
+- host: https://fetch.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/plain
+    file: fetch-rewards-security.txt
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://business.fetch.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://campaigns.fetch.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+notes:
+- 'Only one well-known document is published across the Fetch estate: an RFC 9116
+  security.txt on the apex consumer host. It is a complete record - Contact, Expires,
+  Encryption, Preferred-Languages, Policy and Hiring are all present, and the Expires
+  value (2029-11-14) is in the future.'
+- The 404 responses on fetch.com are genuine HTTP 404s (the SvelteKit site returns an
+  HTML error page with a 404 status), not a single-page-app catch-all answering 200,
+  so these are real misses rather than false negatives.
+x-evidence:
+  fetched: '2026-08-01'
+  method: curl HTTP GET, redirects followed
