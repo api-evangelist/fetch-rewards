@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Receipt Processor",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Submits a receipt for processing.",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/receipts/process",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Submits a receipt for processing."
+    },
+    {
+      "info": {
+        "name": "Returns the points awarded for the receipt.",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/receipts/:id/points",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the receipt."
+          }
+        ]
+      },
+      "docs": "Returns the points awarded for the receipt."
+    }
+  ],
+  "bundled": true
+}

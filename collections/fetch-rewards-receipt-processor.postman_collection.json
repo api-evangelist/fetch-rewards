@@ -1,0 +1,281 @@
+{
+  "item": [
+    {
+      "id": "99235394-6897-4f44-b223-ac00fc9b8826",
+      "name": "Submits a receipt for processing.",
+      "request": {
+        "name": "Submits a receipt for processing.",
+        "description": {
+          "content": "Submits a receipt for processing.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "receipts",
+            "process"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"retailer\": \"<string>\",\n  \"purchaseDate\": \"<date>\",\n  \"purchaseTime\": \"<time>\",\n  \"items\": [\n    {\n      \"shortDescription\": \"<string>\",\n      \"price\": \"<string>\"\n    }\n  ],\n  \"total\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "a8f5261a-b252-4196-bb25-7c34ee95a426",
+          "name": "Returns the ID assigned to the receipt.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "receipts",
+                "process"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"retailer\": \"M&M Corner Market\",\n  \"purchaseDate\": \"2022-01-01\",\n  \"purchaseTime\": \"<time>\",\n  \"items\": [\n    {\n      \"shortDescription\": \"Mountain Dew 12PK\",\n      \"price\": \"6.49\"\n    }\n  ],\n  \"total\": \"6.49\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"adb6b560-0eef-42bc-9d16-df48f30e89b2\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "9f40d7db-51a7-4270-8a18-073828608a43",
+          "name": "The receipt is invalid.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "receipts",
+                "process"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"retailer\": \"M&M Corner Market\",\n  \"purchaseDate\": \"2022-01-01\",\n  \"purchaseTime\": \"<time>\",\n  \"items\": [\n    {\n      \"shortDescription\": \"Mountain Dew 12PK\",\n      \"price\": \"6.49\"\n    }\n  ],\n  \"total\": \"6.49\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "471d4600-ccaa-435b-a143-12608b048c23",
+      "name": "Returns the points awarded for the receipt.",
+      "request": {
+        "name": "Returns the points awarded for the receipt.",
+        "description": {
+          "content": "Returns the points awarded for the receipt.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "receipts",
+            ":id",
+            "points"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "id",
+              "description": "(Required) The ID of the receipt."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "e6715d76-bbae-46dc-9540-764d61cc5c8e",
+          "name": "The number of points awarded.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "receipts",
+                ":id",
+                "points"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the receipt."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"points\": 100\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "c8785055-e5f0-4809-9705-508e77ae0092",
+          "name": "No receipt found for that ID.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "receipts",
+                ":id",
+                "points"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the receipt."
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "76ec52bd-d4d0-4d23-9a5e-4c4d0d4812a8",
+    "name": "Receipt Processor",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A simple receipt processor",
+      "type": "text/plain"
+    }
+  }
+}
