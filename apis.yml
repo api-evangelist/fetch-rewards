@@ -34,42 +34,31 @@ tags:
 - Mobile
 - Marketing
 apis:
-- aid: fetch-rewards:receipt-processor
-  name: Fetch Receipt Processor (Reference Specification)
-  description: 'A two-operation OpenAPI 3.0.3 document Fetch publishes in its public
-    GitHub organization as the specification for its engineering take-home exercise:
-    submit a receipt for processing and retrieve the points awarded for that receipt.
-    It is a reference contract, not a hosted production service - the document declares
-    no servers, no security schemes and no operationIds, and Fetch exposes no public
-    endpoint implementing it. It is captured here because it is the only machine-readable
-    contract Fetch publishes, and it faithfully describes the shape of the receipt and
-    line-item data at the core of the Fetch product.'
+- aid: fetch-rewards:fetch-rewards-receipts-api
+  name: Fetch Rewards Receipts API
+  description: The Receipts API from Fetch Rewards — 2 operation(s) for receipts.
   humanURL: https://github.com/fetch-rewards/receipt-processor-challenge
   tags:
   - Receipts
-  - Rewards
-  - Points
   properties:
   - type: OpenAPI
-    url: openapi/fetch-rewards-receipt-processor-openapi.yml
+    url: openapi/fetch-rewards-receipts-api-openapi.yml
   - type: ErrorCatalog
     url: errors/fetch-rewards-problem-types.yml
   - type: DataModel
     url: data-model/fetch-rewards-data-model.yml
-  - type: Overlay
-    url: overlays/fetch-rewards-receipt-processor-overlay.yaml
   - type: Conventions
     url: conventions/fetch-rewards-conventions.yml
   - type: SourceCode
     url: https://github.com/fetch-rewards/receipt-processor-challenge
-  x-status: reference-specification
-  x-production: false
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/fetch-rewards-receipt-processor-overlay.yaml
 - type: Website
   url: https://fetch.com/
 - type: Solutions
