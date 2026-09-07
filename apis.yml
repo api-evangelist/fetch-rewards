@@ -133,3 +133,5 @@ x-enrichment:
   status: enriched
   artifacts_added: 12
   pass: local-v1
+x-parent: fetch
+x-relationship: product

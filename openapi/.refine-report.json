@@ -1,0 +1,22 @@
+{
+  "provider": "fetch-rewards",
+  "sources": [
+    "fetch-rewards-receipt-processor-openapi.yml"
+  ],
+  "outputs": [
+    "fetch-rewards-receipts-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/fetch-rewards-receipt-processor-openapi.yml"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "fetch-rewards-receipt-processor-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "fetch-rewards-receipt-processor-openapi.yml: tagged paths POST /receipts/process -> Receipts",
+    "fetch-rewards-receipt-processor-openapi.yml: tagged paths GET /receipts/{id}/points -> Receipts",
+    "fetch-rewards-receipt-processor-openapi.yml: declared missing tag: Receipts",
+    "apis.yml register: written (+1 apis, 1 total)"
+  ],
+  "skipped": []
+}
