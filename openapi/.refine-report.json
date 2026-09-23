@@ -1,22 +1,23 @@
 {
   "provider": "fetch-rewards",
   "sources": [
-    "fetch-rewards-receipt-processor-openapi.yml"
+    "_original/fetch-rewards-receipt-processor-openapi.yml"
   ],
   "outputs": [
     "fetch-rewards-receipts-api-openapi.yml"
   ],
-  "archived": [
-    "archived openapi/fetch-rewards-receipt-processor-openapi.yml"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "fetch-rewards-receipt-processor-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "fetch-rewards-receipt-processor-openapi.yml: tagged paths POST /receipts/process -> Receipts",
     "fetch-rewards-receipt-processor-openapi.yml: tagged paths GET /receipts/{id}/points -> Receipts",
     "fetch-rewards-receipt-processor-openapi.yml: declared missing tag: Receipts",
-    "apis.yml register: written (+1 apis, 1 total)"
+    "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "fetch-rewards-receipts-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
